@@ -1,7 +1,13 @@
 // @ts-check
 const { test, expect } = require('@playwright/test');
 
+test('get the diagnosis', async ({ page }) => {
+  await page.goto('/human-model');
 
+  // Expects to show diagnose button
+  await expect(page.getByRole('button', { name: 'Diagnose' })).toBeVisible();
+
+});
 test('navigate to human model page', async ({ page }) => {
   await page.goto('/human-model');
 

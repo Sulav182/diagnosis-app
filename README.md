@@ -1,8 +1,11 @@
-# React + Vite
+# Diagnosis App
+The app uses a human model to enter symptoms of user and leverages ChatGPT api by generating a query based on the symptoms. Then the user is presented with a diagnosis and an option to get an action plan and set of preventive measures.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Steps to run the repo
+1. Clone the repo in your local machine
+2. Install the dependencies: npm i
+3. Start the local server: npm run dev
 
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Steps to run the playwright tests
+1. Start the local server: npm run dev
+2. Run the tests: npx playwright tests
