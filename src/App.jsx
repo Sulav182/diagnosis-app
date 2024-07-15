@@ -1,6 +1,7 @@
 import { Routes, Route, Outlet, Link } from "react-router-dom";
 import { BodyMap } from './bodyMap/BodyMap';
 import Result from "./result/Result";
+import ImgUpload from "./ImgUpload/ImgUpload"; 
 
 function App() {
     return(
@@ -56,11 +57,5 @@ function Home() {
         </div>
     );
 }
-function ImgUpload() {
-    return (
-        <div>
-            <h2>Upload Image</h2>
-        </div>
-    );
-}
+
 export default App;
