@@ -2,6 +2,7 @@ import React from 'react'
 import * as ReactDOM from "react-dom/client";
 import { BrowserRouter } from "react-router-dom";
 import App from './App.jsx'
+import 'bootstrap/dist/css/bootstrap.css';
 import './index.css'
 import { registerSW } from 'virtual:pwa-register'
 registerSW({ immediate: true })

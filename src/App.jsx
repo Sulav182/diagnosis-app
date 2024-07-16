@@ -23,21 +23,26 @@ function Layout() {
       <div>
         {/* A "layout route" is a good place to put markup you want to
             share across all the pages on your site, like navigation. */}
-        <nav>
-          <ul>
-            <li>
-              <Link to="/">Home</Link>
-            </li>
-            <li>
-              <Link to="/human-model">Human Model</Link>
-            </li>
-            <li>
-              <Link to="/image-upload">Image Upload</Link>
-            </li>
-            <li>
-              <Link to="/nothing-here">Nothing Here</Link>
-            </li>
-          </ul>
+        <nav className="navbar navbar-expand-lg navbar-light bg-light">
+          <a className="navbar-brand" href="#">Navbar</a>
+            <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+              <span className="navbar-toggler-icon"></span>
+            </button>
+
+            <div className="collapse navbar-collapse" id="navbarSupportedContent">
+              <ul className="navbar-nav mr-auto">
+                <li className="nav-item active">
+                  <Link className="nav-link" to="/">Home</Link>
+                </li>
+                <li className="nav-item active">
+                  <Link className="nav-link" to="/human-model">Human Model</Link>
+                </li>
+                <li className="nav-item active">
+                  <Link className="nav-link" to="/image-upload">Image Upload</Link>
+                </li>
+                
+            </ul>
+          </div>
         </nav>
   
         <hr />
@@ -51,14 +56,14 @@ function Layout() {
   }
 function Home() {
     return (
-        <div>
-        <h2>Home</h2>
+        <div className="container">
+          <h2>Home</h2>
         </div>
     );
 }
 function ImgUpload() {
     return (
-        <div>
+        <div className="container">
             <h2>Upload Image</h2>
         </div>
     );

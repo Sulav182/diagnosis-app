@@ -101,12 +101,12 @@ export const BodyMap = () => {
     }
     
     return (
-        <>
+        <div className="container">
         {result ? <Result part={clickedName}/> : 
-        <>
+        <div className="container">
         <div className={style.header}>
             <p>{clickedName || txt[lang][0]}</p>
-            <button type="button" onClick={handleDiagnosis}>Diagnose</button>
+            <button className="btn btn-primary" type="button" onClick={handleDiagnosis}>Diagnose</button>
         </div>
         
         <div className={style.bodies}>
@@ -143,9 +143,9 @@ export const BodyMap = () => {
                 </BodyContainer>
             </div>
         </div>
-        </>
+        </div>
         }
-    </>)
+    </div>)
         
 };
 
