@@ -1,8 +1,9 @@
+
 body {
   margin: 0;
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   background: rgb(233, 233, 236);
-  color: white;
+  color: black;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
