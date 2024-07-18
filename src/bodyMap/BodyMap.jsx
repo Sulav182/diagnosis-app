@@ -1,5 +1,7 @@
 //import { useNavigate } from 'react-router-dom';
 import { useCallback, useMemo, useState } from "react"
+import Modal from "react-bootstrap/Modal";
+import "bootstrap/dist/css/bootstrap.min.css";
 import { getBodyPart } from "./bodyParts"
 import style from "./BodyMap.module.css"
 import  Result  from "../result/Result"
@@ -56,6 +58,9 @@ export const BodyMap = () => {
     const [clicked, setClicked] = useState(null)
     const [hovered, setHovered] = useState(null)
     const [result, setResult] = useState(false)
+    const [payload, setPayload] = useState()
+
+    const [isModalOpen, setModalOpen] = useState(false)
     //const navigate = useNavigate();
     const antBodyParts = useMemo(() => {
         return getBodyPart(lang).filter(({ face }) => face === "ant")
@@ -96,17 +101,40 @@ export const BodyMap = () => {
 
     const handleDiagnosis = () => {
         console.log(clickedName)
+        setModalOpen(true)
+        //setResult(true)
+        //navigate('/result')
+    }
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        const form = e.target;
+        const formData = new FormData(form);
+        const formJson = Object.fromEntries(formData.entries());
+        console.log(clickedName, formJson)
+        setPayload({
+            bodyPart:clickedName,
+            symptoms:formJson.content
+        })
         setResult(true)
         //navigate('/result')
     }
     
     return (
         <div className="container">
-        {result ? <Result part={clickedName}/> : 
+        {result ? <Result part={payload}/> : 
         <div className="container">
         <div className={style.header}>
-            <p>{clickedName || txt[lang][0]}</p>
-            <button className="btn btn-primary" type="button" onClick={handleDiagnosis}>Diagnose</button>
+            <p></p>
+            <button className="btn btn-primary" type="button" onClick={handleDiagnosis}>Start Diagnosis</button>
+            <Modal show={isModalOpen}>
+                <Modal.Header>Enter any symptoms you are having:</Modal.Header>
+                <form onSubmit={handleSubmit}>
+                    <Modal.Body>
+                        <textarea style={{width:'100%'}} name="content"/>
+                    </Modal.Body>
+                    <Modal.Footer><button className="btn btn-danger" onClick={()=>{setModalOpen(false)}}>Cancel</button><button className="btn btn-primary" type="submit">Submit Diagnosis</button></Modal.Footer>
+                </form>
+            </Modal>
         </div>
         
         <div className={style.bodies}>
