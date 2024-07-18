@@ -1,8 +1,8 @@
 const Result = (props) => {
-    const {part} = props
+    const {data} = props
     console.log("result",props)
     return (
-        <div className="container">{part.bodyPart+ ' ' + part.symptoms}</div>
+        <div className="container">{data.bodyPart+ ' ' + data.symptoms}</div>
     )
 }
 // Result.propTypes = {

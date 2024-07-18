@@ -107,6 +107,7 @@ export const BodyMap = () => {
     }
     const handleSubmit = (e) => {
         e.preventDefault();
+        console.log(e)
         const form = e.target;
         const formData = new FormData(form);
         const formJson = Object.fromEntries(formData.entries());
@@ -118,10 +119,18 @@ export const BodyMap = () => {
         setResult(true)
         //navigate('/result')
     }
+    const handleCancel = (e) => {
+        e.preventDefault();
+        toggleModal();
+        console.log(isModalOpen)
+    }
+    const toggleModal = () => {
+        setModalOpen(!isModalOpen)
+    }
     
     return (
         <div className="container">
-        {result ? <Result part={payload}/> : 
+        {result ? <Result data={payload}/> : 
         <div className="container">
         <div className={style.header}>
             <p></p>
@@ -132,7 +141,7 @@ export const BodyMap = () => {
                     <Modal.Body>
                         <textarea style={{width:'100%'}} name="content"/>
                     </Modal.Body>
-                    <Modal.Footer><button className="btn btn-danger" onClick={()=>{setModalOpen(false)}}>Cancel</button><button className="btn btn-primary" type="submit">Submit Diagnosis</button></Modal.Footer>
+                    <Modal.Footer><button className="btn btn-danger" type="button" onClick={handleCancel}>Cancel</button><button className="btn btn-primary" type="submit">Submit Diagnosis</button></Modal.Footer>
                 </form>
             </Modal>
         </div>
