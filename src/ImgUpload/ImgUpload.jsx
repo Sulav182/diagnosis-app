@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import axios from 'axios';
 import '../../style/ImgUpload.css';
+import Markdown from 'react-markdown'
 
 function ImgUpload() {
     const [error, setError] = useState(null);
@@ -101,6 +102,7 @@ function ImgUpload() {
     };
 
     return (
+        <div className="container">
         <div className="upload-container">
             <h2>Upload Image</h2>
             {error && <p className="error-message">{error}</p>}
@@ -119,7 +121,8 @@ function ImgUpload() {
             <button onClick={handleChatGPTQuery} disabled={isUploading || !base64Image} className="btn btn-primary" style={{margin:"10px"}}>
                 Ask ChatGPT
             </button>
-            {apiResponse && <p className="api-response">ChatGPT Response: {apiResponse}</p>}
+            {apiResponse && <div><h3 className="api-response">ChatGPT Response:</h3><Markdown> {JSON.stringify(apiResponse)}</Markdown></div>}
+        </div>
         </div>
     );
 }

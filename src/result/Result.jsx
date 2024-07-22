@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import axios from 'axios';
-
+import Markdown from 'react-markdown'
 const Result = (props) => {
     const { data } = props;
     const [apiResponse, setApiResponse] = useState(null);
@@ -68,7 +68,10 @@ const Result = (props) => {
         <div className="container">
             {error && <p className="error-message">{error}</p>}
             {apiResponse ? (
-                <p className="api-response">Medical GPT Response: {apiResponse}</p>
+                <div>
+                    <h3 className="api-response">Medical GPT Response: </h3>
+                    <Markdown>{JSON.stringify(apiResponse)}</Markdown>
+                </div>
             ) : (
                 'Submitting your query...'
             )}
