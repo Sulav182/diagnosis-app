@@ -135,6 +135,12 @@ export const BodyMap = () => {
         <div className={style.header}>
             <p></p>
             <button className="btn btn-primary" type="button" onClick={handleDiagnosis}>Start Diagnosis</button>
+            <p>Instructions:</p>
+            <ul>
+            <li>Select the body part where you are experiencing symptoms</li>
+            <li>Click on 'Start Diagnosis' button</li>
+            <li>Enter the symptom you are experiencing and click on submit</li>
+            </ul>
             <Modal show={isModalOpen}>
                 <Modal.Header>Enter any symptoms you are having:</Modal.Header>
                 <form onSubmit={handleSubmit}>

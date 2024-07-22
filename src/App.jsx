@@ -25,7 +25,7 @@ function Layout() {
         {/* A "layout route" is a good place to put markup you want to
             share across all the pages on your site, like navigation. */}
         <nav className="navbar navbar-expand-lg navbar-light bg-light">
-          <a className="navbar-brand" href="#">Navbar</a>
+          <a className="navbar-brand" href="#">SmartDiagnosis</a>
             <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
               <span className="navbar-toggler-icon"></span>
             </button>
@@ -55,9 +55,19 @@ function Layout() {
   }
 function Home() {
     return (
-        <div className="container">
-          <h2>Home</h2>
-        </div>
+      <div className="container">
+      <h2>Smart Diagnosis</h2>
+      <img src="src/assets/ai-for-app.jpg"></img>
+      
+      <p>Welcome to Smart Diagnosis where you can get a quick diagosis of all your symptoms. </p>
+      <p>There are two ways to enter your diagnosis:</p>
+        <ul>
+          <li>Using human model: You can select the area where you are experiencing some symptoms and enter additional details.</li>
+          <li>Using image upload: You can upload an image of the affected body are and can get a diagnosis.</li>
+        </ul>
+      
+      <p>Disclaimer: This diagnosis is for reference only, please consult your modical doctor before making any decision.</p>
+    </div>
     );
 }
 export default App;

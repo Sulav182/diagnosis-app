@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import axios from 'axios';
-
+import Markdown from 'react-markdown'
 const Result = (props) => {
     const { data } = props;
     const [apiResponse, setApiResponse] = useState(null);
@@ -41,15 +41,37 @@ const Result = (props) => {
                 setError('Error querying ChatGPT: ' + error.message);
             }
         };
-
-        fetchChatGPTResponse();
+        const fetchResponse = async ()=>{
+            try {
+                const response = await axios.post(
+                    'https://ovqd82tmu3.execute-api.us-east-1.amazonaws.com/prod/queryAI',
+                    data,
+                    {
+                        headers: {
+                            'x-api-key': `uYwil5e8jZ8jnomt0utsr4Eocgee5QXk8YevDPCR`,
+                            'Content-Type': 'application/json'
+                        }
+                    }
+                );
+                console.log(response)
+                setApiResponse(response.data.response);
+            } catch (error) {
+                console.error('Error querying ChatGPT:', error);
+                setError('Error querying ChatGPT: ' + error.message);
+            }
+        }
+        fetchResponse();
+        //fetchChatGPTResponse();
     }, [data]);
 
     return (
         <div className="container">
             {error && <p className="error-message">{error}</p>}
             {apiResponse ? (
-                <p className="api-response">Medical GPT Response: {apiResponse}</p>
+                <div>
+                    <h3 className="api-response">Medical GPT Response: </h3>
+                    <Markdown>{JSON.stringify(apiResponse)}</Markdown>
+                </div>
             ) : (
                 'Submitting your query...'
             )}
