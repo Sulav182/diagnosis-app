@@ -48,37 +48,56 @@ function ImgUpload() {
             return;
         }
 
-        try {
-            const payload = {
-                model: "gpt-4o",
-                messages: [
+        // try {
+        //     const payload = {
+        //         model: "gpt-4o",
+        //         messages: [
+        //             {
+        //                 role: "user",
+        //                 content: [
+        //                     { type: "text", text: "I have give me possible cause, diagnosis and treatment plan based on the image" },
+        //                     { type: "image_url", image_url: { url: `data:image/jpeg;base64,${base64Image}` } }
+        //                 ]
+        //             }
+        //         ],
+        //         max_tokens: 300
+        //     };
+
+        //     const response = await axios.post(
+        //         'https://api.openai.com/v1/chat/completions',
+        //         payload,
+        //         {
+        //             headers: {
+        //                 'Authorization': `Bearer ${apiKey}`,
+        //                 'Content-Type': 'application/json'
+        //             }
+        //         }
+        //     );
+
+        //     setApiResponse(response.data.choices[0].message.content);
+        // } catch (error) {
+        //     console.error('Error querying ChatGPT:', error);
+        //     setError('Error querying ChatGPT: ' + error.message);
+        // }
+        //const fetchResponse = async ()=>{
+            try {
+                const response = await axios.post(
+                    'https://ovqd82tmu3.execute-api.us-east-1.amazonaws.com/prod/queryAI',
+                    {image:base64Image},
                     {
-                        role: "user",
-                        content: [
-                            { type: "text", text: "I have give me possible cause, diagnosis and treatment plan based on the image" },
-                            { type: "image_url", image_url: { url: `data:image/jpeg;base64,${base64Image}` } }
-                        ]
+                        headers: {
+                            'x-api-key': `uYwil5e8jZ8jnomt0utsr4Eocgee5QXk8YevDPCR`,
+                            'Content-Type': 'application/json'
+                        }
                     }
-                ],
-                max_tokens: 300
-            };
-
-            const response = await axios.post(
-                'https://api.openai.com/v1/chat/completions',
-                payload,
-                {
-                    headers: {
-                        'Authorization': `Bearer ${apiKey}`,
-                        'Content-Type': 'application/json'
-                    }
-                }
-            );
-
-            setApiResponse(response.data.choices[0].message.content);
-        } catch (error) {
-            console.error('Error querying ChatGPT:', error);
-            setError('Error querying ChatGPT: ' + error.message);
-        }
+                );
+                console.log(response)
+                setApiResponse(response.data.response);
+            } catch (error) {
+                console.error('Error querying ChatGPT:', error);
+                setError('Error querying ChatGPT: ' + error.message);
+            }
+        
     };
 
     return (
@@ -86,7 +105,7 @@ function ImgUpload() {
             <h2>Upload Image</h2>
             {error && <p className="error-message">{error}</p>}
             {fileName && <p className="file-name">Selected file: {fileName}</p>}
-            <label htmlFor="file-upload" className="upload-button">
+            <label htmlFor="file-upload" className="btn btn-primary">
                 {isUploading ? 'Uploading...' : 'Upload an Image'}
                 <input 
                     id="file-upload" 
@@ -97,7 +116,7 @@ function ImgUpload() {
                     disabled={isUploading} // Disable input while uploading
                 />
             </label>
-            <button onClick={handleChatGPTQuery} disabled={isUploading || !base64Image}>
+            <button onClick={handleChatGPTQuery} disabled={isUploading || !base64Image} className="btn btn-primary" style={{margin:"10px"}}>
                 Ask ChatGPT
             </button>
             {apiResponse && <p className="api-response">ChatGPT Response: {apiResponse}</p>}

@@ -41,8 +41,27 @@ const Result = (props) => {
                 setError('Error querying ChatGPT: ' + error.message);
             }
         };
-
-        fetchChatGPTResponse();
+        const fetchResponse = async ()=>{
+            try {
+                const response = await axios.post(
+                    'https://ovqd82tmu3.execute-api.us-east-1.amazonaws.com/prod/queryAI',
+                    data,
+                    {
+                        headers: {
+                            'x-api-key': `uYwil5e8jZ8jnomt0utsr4Eocgee5QXk8YevDPCR`,
+                            'Content-Type': 'application/json'
+                        }
+                    }
+                );
+                console.log(response)
+                setApiResponse(response.data.response);
+            } catch (error) {
+                console.error('Error querying ChatGPT:', error);
+                setError('Error querying ChatGPT: ' + error.message);
+            }
+        }
+        fetchResponse();
+        //fetchChatGPTResponse();
     }, [data]);
 
     return (
